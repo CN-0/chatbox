@@ -8,14 +8,14 @@ import '../css/chat.css'
 const Chat = (props) =>{
     const messagesEndRef = useRef(null)
     const [chats,setchats] = useState([])
-    const [create,setcreate] = useState(true)
     const [chat,setchat] = useState([])
     const [message,setmessage] = useState("")
     const [friend,setfriend] = useState("")
     const room = props.room
     const username = props.username
-    const server="http://localhost:5000"
-    var socket = io.connect(server);
+    //const server="http://localhost:5000"
+    //var socket = io.connect(server);
+    const socket = io()
 
     useEffect(()=>{
         if(room){
@@ -65,7 +65,6 @@ const Chat = (props) =>{
             }, error);
             
             socket.on('createOffer',()=>{
-                setcreate(false)
                 pc.createOffer(function(offer) {
                     pc.setLocalDescription(new sessionDescription(offer), function (){
                         socket.emit('make-offer', {

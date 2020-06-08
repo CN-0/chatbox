@@ -5,6 +5,7 @@ import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
 import {Link} from 'react-router-dom'
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
+import '../../css/home.css'
 
 
 const Register = props => {
@@ -18,7 +19,7 @@ const Register = props => {
   if (props.isAuthenticated) {
     return <Redirect to='/home' />
   }
-  return (<div style={{width:"400px",margin:"auto",textAlign:"center"}}>
+  return (<div className="auth">
       <h1>Register to Chatbox</h1>
     <Form
       name="register"

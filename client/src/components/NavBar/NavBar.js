@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import RightMenu from './RightMenu'
 import { Drawer, Button } from 'antd'
 import {Link} from 'react-router-dom'
+import '../../css/Navbar.css'
 
 const Navbar = () => {
   const [state, setState] = useState({visible: false})

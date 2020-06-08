@@ -5,6 +5,8 @@ import { LockOutlined,MailOutlined } from '@ant-design/icons'
 import {Link} from 'react-router-dom'
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
+import '../../css/home.css'
+
 
 const Login = props => {
 
@@ -19,7 +21,7 @@ const Login = props => {
   }
   
   return (
-  <div style={{width:"400px",margin:"auto",textAlign:"center"}}>
+  <div className="auth">
       <h1>Login to Chatbox</h1>
       <Form
       name="login"

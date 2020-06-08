@@ -14,7 +14,7 @@ const Chat = (props) =>{
     const room = props.room
     const username = props.username
     //const server="http://localhost:5000"
-    //var socket = io.connect(server);
+    //var socket = io.connect("http://localhost:5000");
     const socket = io()
 
     useEffect(()=>{

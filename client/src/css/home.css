@@ -6,3 +6,60 @@
 .site-layout .site-layout-background {
     background: #fff;
 }
+
+.landing-main{
+  width:80%;
+  margin:auto;
+  margin-top:200px;
+}
+
+.welcome-msg{
+  font-size:70px;
+  margin-bottom:10px;
+}
+
+.para{
+  font-size:40px;
+}
+
+.auth{
+  width:400px;
+  margin:auto;
+  margin-top: 100px;
+  text-align:center
+}
+
+
+
+@media(max-width: 794px){
+  .landing-main{
+    margin-top: 150px;
+  }
+  .welcome-msg{
+    font-size: 60px;
+  }
+  .para{
+    font-size: 33px;
+  }
+}
+
+@media(max-width: 500px){
+  .landing-main{
+    margin-top: 130px;
+  }
+  .welcome-msg{
+    font-size: 45px;
+  }
+  .para{
+    font-size: 25px;
+  }
+  .auth{
+    width: 300px;
+  }
+}
+
+@media(max-width: 300px){
+  .auth{
+    margin-top: 50px;
+  }
+}

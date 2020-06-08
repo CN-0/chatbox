@@ -17,7 +17,7 @@ button:hover {
 }
 
 .main-chat{
-    width:400px;
+    width:370px;
     height:100%;
     text-align:center;
 }
@@ -34,7 +34,7 @@ button:hover {
 }
 
 .chat__main {
-    width: 400px;
+    width: 370px;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -114,6 +114,19 @@ button:hover {
     padding:40px;
     text-align:center;
     align-items:center;
+    margin-top:50px;
+    background-color:lightblue
+}
+.leavepage{
+    display:flex;
+    flex-direction:column;
+    width:400px;
+    height:100px;
+    margin:auto;
+    text-align:center;
+    align-items:center;
+    background-color:white;
+    margin-top: 30px;
 }
 
 .joinref{
@@ -127,9 +140,177 @@ button:hover {
     background-color:darkcyan;
 }
 
-@media (max-width: 700px) {
+.vedio-div{
+    width:550px;
+    height:100%;
+    text-align:center;
+    margin: 0px 15px;
+}
+
+.vedii{
+    width:550px;
+    height:85%;
+    border-radius: 10px;
+}
+
+@media (max-width: 1255px) {
+    .video-div{
+        width: 370px;
+    }
+    .vedii{
+        width: 370px;
+        margin-top: -50px;
+    }
+    .chat__main{
+        width: 250px;
+        height: 80%;
+    }
+    .main-chat{
+        width: 250px;
+    }
+    .leavepage{
+        margin-top: -50px;
+    }
+}
+
+@media (max-width: 1049px) {
+    .main-chat{
+        display: none;
+    }
+    .video-div{
+        width: 350px;
+    }
+    .vedii{
+        width: 350px;
+    }
+}
+
+@media (max-width: 750px) {
+    .main-page{
+        height: 450px;
+    }
+    .joinpage{
+        width: 200px;
+        padding-top: 5px;
+    }
+    .joinpage h1{
+        font-size: 15px;
+        padding-top: 0px;
+    }
+    .callee{
+        width:500px;
+        height: 400px;
+        margin-top: -30px;
+    }
+    .calleediv{
+        position: absolute;
+        width: 400px;
+        height: 500px;
+        top: 65px;
+        left: 0px;
+        z-index: 100;
+    }
+    .caller{
+        width: 150px;
+        position: absolute;
+        z-index: 500;
+        top: 0px;
+        left: 0px;
+    }
+    .callerdiv{
+        position: absolute;
+        height: 150px;
+        width: 150px;
+        top: 149px;
+        left: 0px;
+        z-index: 400;
+    }
+    .leavepage{
+        margin-top: -20px;
+    }
+}
+@media (max-width: 520px) {
+    .joinpage{
+        width: 200px;
+        padding-top: 5px;
+    }
+    .joinpage h1{
+        font-size: 15px;
+        padding-top: 0px;
+    }
+    .calleediv{
+        width: 300px;
+        height: 250px;
+    }
+    .callee{
+        left: 0px;
+        margin-left: -22px;
+        width: 380px;
+        height: 250px;
+        margin-top: -19px;
+    }
+    
+    .caller{
+        width: 100px;
+    }
+    .callerdiv{
+        height: 100px;
+        width: 100px;
+    }
+}
+@media (max-width: 400px) {
     .main-page{
         flex-direction: column;
+        width: 100%;
+    }
+    .joinpage{
+        width: 300px;
+        padding-top: 15px;
+    }
+    .joinpage h1{
+        font-size: 25px;
+        padding-top: 0px;
+    }
+    .calleediv{
+        width: 100%;
+        height: 35%;
+        top: 270px;
+    }
+    .callee{
+        width: 100%;
+        height: 100%;
+        
+    }
+    
+    .caller{
+        width: 100%;
+        height: 100%;
+    }
+    .callerdiv{
+        top: 110px;
+        height: 35%;
+        width: 100%;
+        margin-left: 0px;
+    }
+    .calleediv h1{
+        margin-bottom: 12px;
+        margin-top: 7px;
+    }
+    
+    .leavepage{
+        width: 100%;
+        height: 100px;
+        padding: 5px;
+        margin: 40px 0px 0px 0px;
+    }
+    .leavepage h1{
+        font-size: 15px;
+    }
+    .leavepage button{
+        width: 100px;
+    }
+    .leavepage button h1{
+        font-size: 10px;
     }
 }
 

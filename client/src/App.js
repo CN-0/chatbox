@@ -8,7 +8,7 @@ import Home from './components/home'
 import NavBar from './components/NavBar/NavBar'
 import Logout from './components/auth/logout'
 import * as actions from './store/actions/index'
-import './css/App.css'
+
 
 const App = props => {
   useEffect(() => {
@@ -35,7 +35,7 @@ const App = props => {
   return (
     <Suspense fallback={(<div>Loading...</div>)}>
       <NavBar />
-      <div style={{minHeight: 'calc(100vh - 80px)' }}>
+      <div style={{minHeight: 'calc(100vh - 100px)' }}>
         {routes}
       </div>
     </Suspense>

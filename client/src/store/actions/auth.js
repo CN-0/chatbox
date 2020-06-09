@@ -26,11 +26,13 @@ export const authFail = (error) => {
 };
 
 export const logout = (token) => {
-    Axios.post('/users/logout',{logout:"logout"},{headers:{Authorization:`Bearer ${token}`}}).then(response=>{
-        console.log(response.data)
+    if(token){
+        Axios.post('/users/logout',{logout:"logout"},{headers:{Authorization:`Bearer ${token}`}}).then(response=>{
     }).catch(err=>{
         console.log(err)
+        console.log(err.response.data.msg)
     })
+    }
     localStorage.removeItem('token');
     localStorage.removeItem('email');
     localStorage.removeItem('username');
@@ -53,7 +55,8 @@ export const login = (loginData) => {
                 dispatch(authSuccess(response.data.token, response.data.user.email, response.data.user.username));
             })
             .catch(err => {
-                dispatch(authFail(err));
+                console.log(err.response.data.msg);
+                dispatch(authFail(err.response.data.msg));
             });
     };
 };
@@ -71,7 +74,7 @@ export const register = (registerData) => {
                 dispatch(authSuccess(response.data.token, response.data.user.email, response.data.user.username));
             })
             .catch(err => {
-                dispatch(authFail(err));
+                dispatch(authFail("Email is already registered!"));
             });
     };
 };

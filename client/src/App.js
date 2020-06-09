@@ -1,6 +1,7 @@
-import React,{Suspense,useEffect} from 'react'
+import React,{Suspense,useEffect, useState} from 'react'
 import {Route, Switch,Redirect} from "react-router-dom"
 import { connect } from 'react-redux'
+import {message} from 'antd'
 import LandingPage from './components/LandingPage'
 import Login from './components/auth/login'
 import Register from './components/auth/register'
@@ -14,6 +15,11 @@ const App = props => {
   useEffect(() => {
     props.onTryAutoSignup()
   }, [props])
+  useEffect(()=>{
+    if(props.userError){
+    message.error(props.userError)
+    }
+  },[props.userError])
 
   let routes = (
     <Switch>
@@ -44,7 +50,8 @@ const App = props => {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.auth.token !== null
+    isAuthenticated: state.auth.token !== null,
+    userError:state.auth.error
   };
 };
 

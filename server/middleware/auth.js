@@ -13,7 +13,7 @@ const auth = async (req,res,next) =>{
         req.user = user
         next()
     }catch(e){
-        res.status(401).send({error:'plz do authenticate'})
+        res.status(401).json({msg:'plz do authenticate'})
     }
 }
 

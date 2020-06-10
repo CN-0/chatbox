@@ -45,8 +45,8 @@ const Home = (props) =>{
       <Modal title="Create a Room" visible={state} onOk={handleOk} onCancel={handleCancel}>
         <Input value={room} onChange={changed} placeholder="Room Id"/>
       </Modal>
-      {roomid.length>0?<Chat room={roomid} username={props.username} />:null} 
-      <Joinpage room={roomid} clicked={showModal} close={local} />
+      {roomid.length>0?<Chat room={roomid} username={props.username} leave={local} />:null} 
+      {!roomid?<Joinpage clicked={showModal} close={local} />:null}
       </> 
     )
 }
@@ -59,5 +59,3 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps)(Home)
-
-

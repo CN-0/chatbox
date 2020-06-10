@@ -55,8 +55,7 @@ export const login = (loginData) => {
                 dispatch(authSuccess(response.data.token, response.data.user.email, response.data.user.username));
             })
             .catch(err => {
-                console.log(err.response.data.msg);
-                dispatch(authFail(err.response.data.msg));
+                dispatch(authFail(err.response.data.msg))
             });
     };
 };

@@ -46,6 +46,7 @@ io.on('connection', function (socket) {
         }else{
             console.log("error")
         }
+        console.log(users)
     });
     socket.on('final', function (data) {
         if(users[data][0]===socket.id){
@@ -79,6 +80,7 @@ io.on('connection', function (socket) {
                 }
             }
         });
+        console.log(users)
     })
 
 });

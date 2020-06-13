@@ -27,7 +27,7 @@ export const authFail = (error) => {
 
 export const logout = (token) => {
     if(token){
-        Axios.post('http://localhost:5000/users/logout',{logout:"logout"},{headers:{Authorization:`Bearer ${token}`}}).then(response=>{
+        Axios.post('/users/logout',{logout:"logout"},{headers:{Authorization:`Bearer ${token}`}}).then(response=>{
     }).catch(err=>{
         console.log(err)
         console.log(err.response.data.msg)
@@ -45,7 +45,7 @@ export const logout = (token) => {
 export const login = (loginData) => {
     return dispatch => {
         dispatch(authStart())
-        let url = 'http://localhost:5000/users/login'
+        let url = '/users/login'
         
         Axios.post(url, loginData)
             .then(response => {
@@ -64,7 +64,7 @@ export const register = (registerData) => {
     console.log(registerData)
     return dispatch => {
         dispatch(authStart())
-        let url = 'http://localhost:5000/users/register'
+        let url = '/users/register'
         Axios.post(url, registerData)
             .then(response => {
                 localStorage.setItem('token', response.data.token);

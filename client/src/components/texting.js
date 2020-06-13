@@ -8,7 +8,8 @@ const Texting = props =>{
     const messagesEndRef = useRef(null)
     const [room] = useState(props.room)
     const [username] = useState(props.username)
-    const { current: socket } = useRef(io.connect("http://localhost:5000"))
+    //const { current: socket } = useRef(io.connect("http://localhost:5000"))
+    const { current: socket } = useRef(io())
     const [chats,setchats] = useState([])
     const [message,setmessage] = useState("")
 

@@ -8,7 +8,7 @@ const Texting = props =>{
     const messagesEndRef = useRef(null)
     const [room] = useState(props.room)
     const [username] = useState(props.username)
-    const { current: socket } = useRef(io())
+    const { current: socket } = useRef(io.connect("http://localhost:5000"))
     const [chats,setchats] = useState([])
     const [message,setmessage] = useState("")
 
@@ -45,7 +45,7 @@ const Texting = props =>{
     }
     return(<div className="main-page">
     <div className="chat__main">
-        <h1>Room Id:{room}</h1>
+        <h1 style={{marginBottom:"2px"}}>Chat</h1>
         <div id="messages" className="chat__messages">
         {chats.map((chat,index)=><Mess key={index} chat={chat} />)}
         <div ref={messagesEndRef} />

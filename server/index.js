@@ -5,7 +5,7 @@ const socketIO = require('socket.io');
 const path = require('path')
 require('./db/mongoose')
 const userRouter = require('./routers/user')
-const generateMessage = require('./utils/message')
+const generateMessage = require('./utils/utils')
 
 const PORT = process.env.PORT || 5000
 
@@ -29,6 +29,31 @@ if(process.env.NODE_ENV === 'production'){
 }
 
 let users={}
+let players = {}
+let unmatched
+
+function joinGame (socket,username) {
+    players[socket.id] = {
+        username:username,
+        opponent: unmatched,
+        symbol: 'X',
+        socket: socket
+    };
+    if (unmatched) {
+    players[socket.id].symbol = 'O';
+    players[unmatched].opponent = socket.id;
+    unmatched = null;
+    } else {
+    unmatched = socket.id;
+    }
+}
+   
+function getOpponent (socket) {
+    if (!players[socket.id].opponent) {
+    return;
+    }
+    return players[players[socket.id].opponent].socket;
+}
 
 io.on('connection', function (socket) {
     socket.on('roomData', (data) => {
@@ -39,14 +64,12 @@ io.on('connection', function (socket) {
         }else if(users[data.room].length===1){
             users[data.room].push(socket.id)
             socket.join(data.room)
-            console.log(users)
             socket.emit("message",generateMessage("Admin",`welcome ${data.username}`))
             socket.broadcast.to(data.room).emit("message",generateMessage("Admin",`${data.username} has joined!`))
             socket.broadcast.to(data.room).emit('createOffer')
         }else{
             console.log("error")
         }
-        console.log(users)
     });
     socket.on('final', function (data) {
         if(users[data][0]===socket.id){
@@ -67,6 +90,26 @@ io.on('connection', function (socket) {
     socket.on("incmessage",(data)=>{
         io.to(data.room).emit("message",generateMessage(data.username,data.message))
     })
+    socket.on("gameData",(data)=>{
+        if(data.restart){
+            delete players[socket.id]
+        }
+        joinGame(socket,data.username)
+        if (getOpponent(socket)) {
+        socket.emit('game-begin', {symbol: players[socket.id].symbol,opponentUsername:players[getOpponent(socket).id].username});
+        getOpponent(socket).emit('game-begin', {
+        symbol: players[getOpponent(socket).id].symbol,
+        opponentUsername:data.username
+        });
+        }
+    })
+    socket.on('make-move', function (data) {
+        if (!getOpponent(socket)) {
+        return;
+        }
+        socket.emit('move-made', data);
+        getOpponent(socket).emit('move-made', data);
+    });
     socket.on('disconnect', () => {
         let keys = Object.keys(users)
         keys.forEach(key => {
@@ -80,7 +123,7 @@ io.on('connection', function (socket) {
                 }
             }
         });
-        console.log(users)
+        delete players[socket.id]
     })
 
 });

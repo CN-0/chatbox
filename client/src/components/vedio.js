@@ -6,7 +6,6 @@ const Vedio = props =>{
     const [friend,setfriend] = useState("")
     const [room] = useState(props.room)
     const [username] = useState(props.username)
-    //const { current: socket } = useRef(io.connect("http://localhost:5000"))
     const { current: socket } = useRef(io())
     useEffect(()=>{
         if(room){

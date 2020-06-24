@@ -30,7 +30,7 @@ if(process.env.NODE_ENV === 'production'){
 
 let users={}
 let players = {}
-let unmatched
+let unmatched = ""
 
 function joinGame (socket,username) {
     players[socket.id] = {
@@ -39,7 +39,7 @@ function joinGame (socket,username) {
         symbol: 'X',
         socket: socket
     };
-    if (unmatched) {
+    if (unmatched.length>0) {
     players[socket.id].symbol = 'O';
     players[unmatched].opponent = socket.id;
     unmatched = null;

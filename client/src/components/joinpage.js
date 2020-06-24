@@ -9,10 +9,3 @@ return(<div className="joinpage">
 </div>)
 }
 export default Joinpage
-
-/**if(props.room){
-        div =(<div className="leavepage">
-        <h1 style={{width:"100%"}}>Room Id : {props.room}</h1>
-        <button onClick={props.close} className="joinref"><h1 style={{paddingTop:"8px"}}>LEAVE ROOM</h1></button>
-        </div>)
-    } */

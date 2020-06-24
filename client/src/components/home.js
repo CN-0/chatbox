@@ -1,13 +1,12 @@
 import React, {useState, useEffect} from 'react'
-import { Modal, Input } from 'antd';
 import { connect } from 'react-redux';
 import '../css/home.css'
 import Chat from './chat'
 import Joinpage from './joinpage'
+import Modl from "./modl";
 
 const Home = (props) =>{
-    const [state, setState] = useState(false)
-    const [room, setRoom] = useState("")
+  const [state, setState] = useState(false)
     const [roomid, setRoomId] = useState("")
 
     useEffect(()=>{
@@ -21,32 +20,23 @@ const Home = (props) =>{
     },[])
     
     const showModal = () => setState(true)
-    const handleOk = e => {
-      setState(false)
-      if(room.length>0){
-        setRoomId(room)
-        localStorage.setItem('room', room);
-      }
-    };
-    const handleCancel = e => {
-        setState(false);
-        setRoom("")
-    };
-    const changed =(e) =>{
-      setRoom(e.target.value)
-    } 
+    
     const local =() =>{
       setRoomId("")
-      setRoom("")
      localStorage.removeItem('room');
+    }
+    const submitted = data =>{
+      setState(false);
+      if(data.length>0){
+        setRoomId(data)
+        localStorage.setItem('room', data);
+      }
     }
    return(
       <>
-      <Modal title="Create a Room" visible={state} onOk={handleOk} onCancel={handleCancel}>
-        <Input value={room} onChange={changed} placeholder="Room Id"/>
-      </Modal>
+      {state?<Modl onSubmission={submitted} />:null }
       {roomid.length>0?<Chat room={roomid} username={props.username} leave={local} />:null} 
-      {!roomid?<Joinpage clicked={showModal} close={local} />:null}
+      {!roomid?<Joinpage clicked={showModal} />:null}
       </> 
     )
 }

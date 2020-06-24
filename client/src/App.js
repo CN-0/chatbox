@@ -14,7 +14,7 @@ import * as actions from './store/actions/index'
 const App = props => {
   useEffect(() => {
     props.onTryAutoSignup()
-  }, [props])
+  }, [props.isAuthenticated])
   useEffect(()=>{
     if(props.userError){
     message.error(props.userError)
